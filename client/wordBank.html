@@ -1,0 +1,14 @@
+<template name="wordBank">
+	<div class="yaks">
+		<div class="form-style">
+			<div class="container">
+				{{> submitWord}}
+				<ul class="list-group">
+					{{#each words}}
+						{{> wordItem}}
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+	</div>
+</template>
