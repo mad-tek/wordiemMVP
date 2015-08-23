@@ -12,6 +12,12 @@ $secondColor: #fff;
 
 }
 
+.list-group-item {
+  width: auto;
+  display: inline-block;
+  cursor: pointer;
+}
+
 input {
   margin-top: 10px;
 }
