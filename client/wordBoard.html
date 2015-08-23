@@ -1,0 +1,13 @@
+<template name="wordBoard">
+	<div class="wordBoard">
+		<div class="form-style">
+			<div class="container">
+				<ul class="list-group">
+					{{#each wordBoards}}
+						{{> wordBoard}}
+					{{/each}}
+				</ul>
+			</div>
+		</div>
+	</div>
+</template>
