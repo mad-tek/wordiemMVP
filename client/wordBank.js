@@ -31,9 +31,20 @@ Template.wordBank.onRendered(function() {
 Template.wordBank.events({
 	'click .wordItem': function (e) {
 		e.preventDefault();
-	var word = ($(".wordItem").text());
-	$(e.target).parentsUntil('li.list-group-item').toggleClass('gigante');
-	$('.list-group').packery();
+		var word = ($(".wordItem").text());
+
+		//one card open at a time
+		$('.list-group').find('.gigante').each( function( i, itemElem ) {
+			$(itemElem).toggleClass('gigante');
+		});
+
+		//open current word card
+		$(e.target).parentsUntil('li.list-group-item').toggleClass('gigante');
+		$('.list-group').packery();
+
+		//populates word card
+		var word = Words.find({word: Session.get("selectedWord")});
+		console.log(e.target.parentNode);
 	},
 	'mousedown .delete-item, dblclick .wordItem': function(e) {
 		e.preventDefault;
@@ -45,9 +56,9 @@ Template.wordBank.events({
 			return false;
 		}
 	},
-	'click .wordItem': function () {
-		Session.set('selectedWord',this.word)	
-	}
+	// 'click .wordItem': function () {
+	// 	Session.set('selectedWord',this.word)
+	// }
 });
 	// for(var i = 0; i < document.getElementsByClassName('wordItem').length; i++){
 	// 	document.getElementsByClassName('wordItem')[i].addEventListener('contextMenu', function(e){

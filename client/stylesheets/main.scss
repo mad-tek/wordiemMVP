@@ -13,13 +13,14 @@ $secondColor: #fff;
 }
 
 .list-group-item {
+  margin-bottom: 5px;
   width: auto;
   display: inline-block;
   cursor: pointer;
 }
 
-input {
-  margin-top: 10px;
+.submitWord {
+  margin: 10px 0;
 }
 
 .pills {
