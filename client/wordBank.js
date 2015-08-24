@@ -44,7 +44,11 @@ Template.wordBank.events({
 		}else{
 			return false;
 		}
+	},
+	'click .wordItem': function () {
+		Session.set('selectedWord',this.word)	
 	}
+});
 	// for(var i = 0; i < document.getElementsByClassName('wordItem').length; i++){
 	// 	document.getElementsByClassName('wordItem')[i].addEventListener('contextMenu', function(e){
 	// 		e.preventDefault;
@@ -57,4 +61,3 @@ Template.wordBank.events({
 	// 		}
 	// 	})
 	// }
-});
