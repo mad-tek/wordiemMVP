@@ -32,7 +32,8 @@ Template.wordBank.events({
 	'click .wordItem': function (e) {
 		e.preventDefault();
 	var word = ($(".wordItem").text());
-	console.log(word)
+	$(e.target).parentsUntil('li.list-group-item').toggleClass('gigante');
+	$('.list-group').packery();
 	},
 	'mousedown .delete-item, dblclick .wordItem': function(e) {
 		e.preventDefault;
