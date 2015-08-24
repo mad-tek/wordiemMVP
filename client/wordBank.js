@@ -33,6 +33,27 @@ Template.wordBank.events({
 		e.preventDefault();
 	var word = ($(".wordItem").text());
 	console.log(word)
-},
-
+	},
+	'mousedown .delete-item, dblclick .wordItem': function(e) {
+		e.preventDefault;
+		var message = 'Are you sure you want to remove "' + this.title + '"?';
+		if(confirm(message)){
+			Words.remove(this._id);
+			return true;
+		}else{
+			return false;
+		}
+	}
+	// for(var i = 0; i < document.getElementsByClassName('wordItem').length; i++){
+	// 	document.getElementsByClassName('wordItem')[i].addEventListener('contextMenu', function(e){
+	// 		e.preventDefault;
+	// 		var message = 'Are you sure you want to remove "' + this.title + '"?';
+	// 		if(confirm(message)){
+	// 			Words.remove(this._id);
+	// 			return true;
+	// 		}else{
+	// 			return false;
+	// 		}
+	// 	})
+	// }
 });
