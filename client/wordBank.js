@@ -42,6 +42,7 @@ Template.wordBank.events({
 			$(itemElem).toggleClass('gigante');
 		});
 		$('.definition-ondemand').remove();
+		$('.close-button').remove();
 
 		//open current word card
 		$(e.target).parentsUntil('li.list-group-item').toggleClass('gigante');
@@ -50,7 +51,6 @@ Template.wordBank.events({
 
 		//populates word card
 		var word = Words.find({word: Session.get("selectedWord")}, {definition: 1, word: 1, _id:0});
-		console.log(word.map(function(i){return i.definition;})[0]);
 		var node = document.createElement('p');
 		var titlenode = document.createTextNode(word.map(function(query) {return query.word;})[0] + ": ");
 		var textnode = document.createTextNode(word.map(function(query){return query.definition;})[0]);
@@ -58,10 +58,16 @@ Template.wordBank.events({
 		node.appendChild(titlenode);
 		node.appendChild(textnode);
 		e.target.parentNode.appendChild(node);
+		//delete button
+		var closediv = document.createElement('a');
+		var closebutton = document.createTextNode("delete this word");
+		closediv.className = "close-button";
+		closediv.appendChild(closebutton);
+		e.target.parentNode.appendChild(closediv);
 	},
-	'mousedown .delete-item, dblclick .wordItem': function(e) {
+	'mousedown .close-button, click .close-button': function(e) {
 		e.preventDefault;
-		var message = 'Are you sure you want to remove "' + this.title + '"?';
+		var message = 'Are you sure you want to remove "' + this.word + '"?';
 		if(confirm(message)){
 			Words.remove(this._id);
 			return true;
