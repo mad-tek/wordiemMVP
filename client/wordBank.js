@@ -33,5 +33,6 @@ Template.wordBank.events({
 		e.preventDefault();
 	var word = ($(".wordItem").text());
 	console.log(word)
-	}
+},
+
 });
