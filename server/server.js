@@ -7,5 +7,6 @@ Meteor.methods({
 			createdAt: new Date()
 		});
 		var postId = Words.insert(word)
+		$('.list-group').packery();
 	}
 })

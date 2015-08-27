@@ -39,11 +39,6 @@ var cardHandler = function(wordcard) {
 Template.wordBank.helpers({
 	words: function() {
 		var words = Words.find({}, {sort: {createdAt: -1}, word: 1, definition: 0, _id: 0});
-		$('.list-group').packery({
-			itemSelector: '.list-group-item',
-			gutter: 5
-		});
-		draggability();
 		return words;
 	},
 	definition: function (){
@@ -57,6 +52,19 @@ Template.wordBank.onRendered(function() {
 	console.log('dom rendered');
 });
 
+Template.wordBank.rendered = function() {
+	this.find('.list-group')._uihooks = {
+		insertElement: function(node, next) {
+			$('.list-group').packery({
+				itemSelector: '.list-group-item',
+				gutter: 5
+			});
+			$('.list-group').prepend(node);
+			$('.list-group').packery('prepended', node);
+			draggability();
+		}
+	}
+};
 
 Meteor.startup(function() {
 	Tracker.autorun(function() {
