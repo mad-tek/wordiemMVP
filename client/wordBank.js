@@ -1,57 +1,68 @@
-var packery = function () {
-	$('.list-group').packery({
-		itemSelector: '.list-group-item',
-		gutter: 5
-	});
-}
+//dragging init
 var draggability = function() {
 	$('.list-group').find('.list-group-item').each( function( i, itemElem ) {
-	// make element draggable with Draggabilly
-	var draggie = new Draggabilly( itemElem );
-	// bind Draggabilly events to Packery
-	$('.list-group').packery( 'bindDraggabillyEvents', draggie );
+		// make element draggable with Draggabilly
+		var draggie = new Draggabilly( itemElem );
+		// bind Draggabilly events to Packery
+		$('.list-group').packery( 'bindDraggabillyEvents', draggie );
 	});
 }
+//word card handler
 var cardHandler = function(wordcard) {
 	//open current word card
 	$(wordcard).parent().toggleClass('gigante');
 	$('.list-group').packery();
 
+	//dynamic create DOM in word card
+	var createElement = function(el, txt, clas) {
+		var newdiv = document.createElement(el);
+		var content = document.createTextNode(txt);
+		newdiv.className = clas;
+		newdiv.appendChild(content);
+		wordcard.parentNode.appendChild(newdiv);
+	}
+
 	//populates word card
 	var word = Words.find({word: Session.get("selectedWord")}, {definition: 1, word: 1, _id:0});
-	var node = document.createElement('p');
-	var titlenode = document.createTextNode(word.map(function(query) {return query.word;})[0] + ": ");
-	var textnode = document.createTextNode(word.map(function(query){return query.definition;})[0]);
-	node.className = "definition-ondemand";
-	node.appendChild(titlenode);
-	node.appendChild(textnode);
-	wordcard.parentNode.appendChild(node);
+
+	//definition
+	var defText = word.map(function(query) {return query.word + ": " + query.definition;});
+	createElement("p", defText, "definition-ondemand");
 
 	//delete word button
-	var closediv = document.createElement('a');
-	var closebutton = document.createTextNode("delete this word");
-	closediv.className = "close-button";
-	closediv.appendChild(closebutton);
-	wordcard.parentNode.appendChild(closediv);
-}
+	createElement("a", "delete this word |", "delete-button");
 
+	//close button
+	createElement("a", "| close", "close-button");
+}
 
 Template.wordBank.helpers({
 	words: function() {
-		return Words.find();
+		var words = Words.find({}, {sort: {createdAt: -1}, word: 1, definition: 0, _id: 0});
+		$('.list-group').packery({
+			itemSelector: '.list-group-item',
+			gutter: 5
+		});
+		draggability();
+		return words;
 	},
 	definition: function (){
+		$('.list-group').packery();
 		return Words.find({word: Session.get("selectedWord")});
 	}
 });
 
 
 Template.wordBank.onRendered(function() {
-	packery();
-	draggability();
+	console.log('dom rendered');
 });
 
 
+Meteor.startup(function() {
+	Tracker.autorun(function() {
+		console.log('There are ' + Words.find().count() + ' words');
+	})
+});
 
 Template.wordBank.events({
 	'click .wordItem, click .list-group-item': function (e) {
@@ -64,6 +75,7 @@ Template.wordBank.events({
 			$(itemElem).toggleClass('gigante');
 		});
 		$('.definition-ondemand').remove();
+		$('.delete-button').remove();
 		$('.close-button').remove();
 
 		//click on the link and clicking on the link cell
@@ -77,7 +89,7 @@ Template.wordBank.events({
 		}
 
 	},
-	'mousedown .close-button, click .close-button': function(e) {
+	'mousedown .delete-button, click .delete-button': function(e) {
 		e.preventDefault;
 		var message = 'Are you sure you want to remove "' + this.word + '"?';
 		if(confirm(message)){
@@ -87,19 +99,4 @@ Template.wordBank.events({
 			return false;
 		}
 	},
-	// 'click .wordItem': function () {
-	// 	Session.set('selectedWord',this.word)
-	// }
 });
-	// for(var i = 0; i < document.getElementsByClassName('wordItem').length; i++){
-	// 	document.getElementsByClassName('wordItem')[i].addEventListener('contextMenu', function(e){
-	// 		e.preventDefault;
-	// 		var message = 'Are you sure you want to remove "' + this.title + '"?';
-	// 		if(confirm(message)){
-	// 			Words.remove(this._id);
-	// 			return true;
-	// 		}else{
-	// 			return false;
-	// 		}
-	// 	})
-	// }

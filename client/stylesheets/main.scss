@@ -17,6 +17,9 @@ $secondColor: #fff;
   width: auto;
   display: inline-block;
   cursor: pointer;
+  a {
+    text-decoration: none;
+  }
 }
 
 .submitWord {

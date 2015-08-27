@@ -3,6 +3,8 @@
   width: auto;
   display: inline-block;
   cursor: pointer; }
+  .list-group-item a {
+    text-decoration: none; }
 
 .submitWord {
   margin: 10px 0; }
