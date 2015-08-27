@@ -1,0 +1,58 @@
+<template name="reader">
+	<div class="reader">
+		<div class="container"  id="readerWrapper">
+      <div class="row">
+        <div class="col-xs-12">
+          <form class="submitReaderForm">
+      			<div class="input-group">
+      				<input name="readerSource" type="text" id="submit" class="submit-form form-control" autofocus="autofocus" placeholder="Link to source or upload file"/>
+      				<span class="input-group-btn">
+      					<input type="submit" value="GET." class="btn btn-primary">
+      				</span>
+      			</div>
+      		</form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="btn-group">
+            <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Highlight color <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="#">Sunny Yellow</a></li>
+              <li><a href="#">Sky Blue</a></li>
+              <li><a href="#">Bloody Red</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Pine Green</a></li>
+            </ul>
+          </div>
+          <div class="btn-group">
+            <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Word Board <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="#">English words</a></li>
+              <li><a href="#">Bio words</a></li>
+              <li><a href="#">SAT words</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="#">Spanish words</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+			<div class="row">
+        <div class="col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 class="panel-title">Title</h3>
+            </div>
+            <div class="panel-body" id="readerPanel">
+              Panel content
+            </div>
+          </div>
+        </div>
+			</div>
+		</div>
+	</div>
+</template>

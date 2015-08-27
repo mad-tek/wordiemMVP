@@ -3,7 +3,9 @@
 		<div class="form-style">
 			<h3>WordBank</h3>
 			<sup>There are {{words.count}} words</sup>
-			{{> submitWord}}
+			<div class="form-style">
+				{{> submitWord}}
+			</div>
 				<ul class="list-group">
 					{{#each words}}
 						{{> wordItem}}

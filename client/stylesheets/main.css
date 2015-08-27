@@ -1,3 +1,6 @@
+html, body {
+  height: 100%; }
+
 .list-group-item {
   margin-bottom: 5px;
   width: auto;
@@ -20,5 +23,11 @@
 
 .hidden {
   display: none; }
+
+#readerPanel {
+  height: 500px; }
+
+#readerWrapper .col-xs-12 {
+  margin-top: 10px; }
 
 /*# sourceMappingURL=main.css.map */

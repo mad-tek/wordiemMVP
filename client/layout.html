@@ -1,8 +1,14 @@
 <template name="layout">
 	<div class="container">
-		{{> header}}
-		<div id="main">
-			{{> yield}}
+		<div class="row">
+			<div class="col-xs-12">
+				{{> header}}
+				<div id="main">
+					{{#momentum plugin='iron-router' options=transition}}
+					  {{> yield}}
+					{{/momentum}}
+				</div>
+			</div>
 		</div>
 	</div>
 </template>

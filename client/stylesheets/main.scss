@@ -1,16 +1,10 @@
 $primeColor: #000;
 $secondColor: #fff;
 
-.container {
-
-}
-#main {
-
+html, body {
+  height: 100%;
 }
 
-.userProfile {
-
-}
 
 .list-group-item {
   margin-bottom: 5px;
@@ -37,4 +31,12 @@ $secondColor: #fff;
 }
 .hidden {
   display: none;
+}
+
+#readerPanel {
+  height: 500px;
+}
+
+#readerWrapper .col-xs-12 {
+  margin-top: 10px;
 }
