@@ -117,11 +117,16 @@ function WDpopDefinition() {
       document.getElementsByClassName('definition-container')[0].appendChild(removeWordBtn);
       //when clicked sends clickedWord to background.js to be removed
       removeWordBtn.addEventListener('click', function() {
-        port.postMessage({
-        	removeWord: clickedWord
-        });
+        wordToDelete = Words.find({word: clickedWord}).map(function(query) {return query._id;})
+        console.log(wordToDelete[0]);
+        var message = 'Are you sure you want to remove "' + clickedWord + '"?';
+    		if(confirm(message)){
+    			Words.remove(wordToDelete[0]);
+    			WDhighlighter(clickedWord, false);
+    		}else{
+    			return false;
+    		}
         //remove highlight class from deleted clickedWord
-        WDhighlighter(clickedWord, false);
       });
     });
     //create pin clickedWord button
@@ -129,13 +134,6 @@ function WDpopDefinition() {
       removeWordBtn.innerHTML = 'Pin: "' + clickedWord + '"';
       document.getElementsByClassName('definition-container')[0].appendChild(removeWordBtn);
       //when clicked sends clickedWord to background.js to be pinned
-      removeWordBtn.addEventListener('click', function() {
-        port.postMessage({
-        	pinWord: clickedWord
-        });
-        //add special highlight class for pinned clickedWord
-        //.....to be worked on
-      });
     });
   }
   //number of highlighted words
@@ -184,11 +182,32 @@ Template.reader.events({
   'submit .submitReaderForm': function(e) {
     e.preventDefault();
     var source = e.target.readerSource.value;
+    $('#readerPanel').innerHTML = '';
     Meteor.call('scrape', source, function(error, result) {
       if(error){
         console.log("error", error);
       };
       Session.set("scrape", result)
+      setTimeout(
+        function() {
+          var words = Words.find({}, {sort: {createdAt: -1}, word: 1, definition: 0, _id: 0});
+          var vocab = words.map(function(query) {
+            return query.word;
+          });
+          //highlighter reset
+          var highlightReset = document.getElementsByClassName('wordiem-highlight');
+          for (var i = 0; i < highlightReset.length; i++){
+            var text = highlightReset[i].innerHTML;
+            WDhighlighter(text, false);
+          }
+          //vocab is the array. for each value in the array, find and highlight in the DOM
+          vocab.forEach(function(text){
+            //highlighter from helper.js
+            WDhighlighter(text, "highlight");
+          });
+          //attach eventlistener for popup definition. call from "src/inject/popDefinition.js"
+          WDpopDefinition();
+      }, 1000);
     })
   },
   'click #yellow' : function(e) {
@@ -210,5 +229,10 @@ Template.reader.events({
     e.preventDefault();
     $('.wordiem-highlight').css('background-color', 'green');
     $('.wordiem-highlight').css('color', 'white');
+  },
+  'click .removeWordBtn' : function(e) {
+    e.preventDefault();
+
+
   }
 })
