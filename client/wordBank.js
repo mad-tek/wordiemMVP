@@ -49,10 +49,6 @@ Template.wordBank.helpers({
 
 
 Template.wordBank.onRendered(function() {
-	console.log('dom rendered');
-});
-
-Template.wordBank.rendered = function() {
 	this.find('.list-group')._uihooks = {
 		insertElement: function(node, next) {
 			$('.list-group').packery({
@@ -64,7 +60,7 @@ Template.wordBank.rendered = function() {
 			draggability();
 		}
 	}
-};
+});
 
 Meteor.startup(function() {
 	Tracker.autorun(function() {

@@ -15,3 +15,11 @@ ian:accounts-ui-bootstrap-3
 underscore
 percolate:momentum
 percolate:momentum-iron-router
+
+
+mrt:cheerio
+http
+meteorhacks:npm
+
+
+npm-container
