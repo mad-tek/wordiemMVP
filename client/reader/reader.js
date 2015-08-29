@@ -3,7 +3,13 @@
 //create new element helper
 function WDcreateElement(tagName, className, fn) {
   var element = document.createElement(tagName);
-  element.className = className;
+  if(className instanceof Array) {
+    for (var i = 0; i < className.length; i++){
+      element.className += " " + className[i];
+    }
+  }else{
+    element.className = className;
+  }
   fn(element);
 }
 
@@ -83,7 +89,6 @@ function WDhighlighter(text, highlighter) {
 }
 
 //popup definition handler
-//dependencies: jquery, "src/inject/helpers.js"
 function WDpopDefinition() {
   //create popup definition div
   WDcreateElement('div', 'definition-container', function(popup) {
@@ -112,7 +117,7 @@ function WDpopDefinition() {
     });
 
     //create remove clickedWord button
-    WDcreateElement('button', 'removeWordBtn', function(removeWordBtn) {
+    WDcreateElement('button', ['removeWordBtn', 'btn', 'btn-danger'], function(removeWordBtn) {
       removeWordBtn.innerHTML = 'Remove: "' + clickedWord + '"';
       document.getElementsByClassName('definition-container')[0].appendChild(removeWordBtn);
       //when clicked sends clickedWord to background.js to be removed
@@ -130,7 +135,7 @@ function WDpopDefinition() {
       });
     });
     //create pin clickedWord button
-    WDcreateElement('button', 'removeWordBtn', function(removeWordBtn) {
+    WDcreateElement('button', ['removeWordBtn', 'btn', 'btn-info'], function(removeWordBtn) {
       removeWordBtn.innerHTML = 'Pin: "' + clickedWord + '"';
       document.getElementsByClassName('definition-container')[0].appendChild(removeWordBtn);
       //when clicked sends clickedWord to background.js to be pinned
