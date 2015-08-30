@@ -8,21 +8,21 @@ Meteor.methods({
 		results = [];
 		tempDef = [];
 		tempPos = [];
-		
+
 		var base_url = 'http://www.dictionaryapi.com/api/v1/references/collegiate/xml/'+postAttributes.word+'?key=a9b252b9-b995-41e8-9e32-a2abbd18c801';
 		Meteor.http.get(base_url, function (error, response){
 			if (response.statusCode == 200) {
 				console.log(response.content)
 				xml2js.parseString(response.content, function (error, result){
-					var entries = result.entry_list.entry				
+					var entries = result.entry_list.entry
 					for (var i=0; i<entries.length; i++) {
-						
+
 						//only show entries that are actually your word
 						if (entries[i].ew == postAttributes.word) {
 
-							var definition = entries[i].def[0].dt;						
+							var definition = entries[i].def[0].dt;
             	var partOfSpeech = entries[i].fl;
-            	
+
             	switch (typeof definition) {
 								case "object":
 		              for (var i=0; i<(_.size(definition)); i++){
@@ -35,14 +35,14 @@ Meteor.methods({
 	          	case "string":
 	          	default:
 	              break;
-      				}		
+      				}
             	results.push({
             		partOfSpeech: partOfSpeech,
             		definition: definition
             	});
             }
           }
-				});				
+				});
 
      	_.each(results, function(item) {
           tempDef.push(item.definition)
@@ -56,9 +56,9 @@ Meteor.methods({
 		      		partOfSpeech: tempPos,
 		      		createdAt: new Date()
 		      	});
-		      	
+
 		      var postId = Words.insert(word);
-		      	// $('.list-group').packery(); 
+		      	// $('.list-group').packery();
       	console.log(results)
 			} else {
 				console.log("Response issue: ", result.statusCode);
@@ -81,7 +81,17 @@ if (Meteor.isServer){
 				returnRes.push($('title').text().trim());
 				returnRes.push($('body').text().trim());
 				return returnRes;
-			}
+			},
+			newSignUp: function(emailadd) {
+				var date = new Date()
+				var time = new Date()
+				timestamp = date.toLocaleDateString() + " " + time.toLocaleTimeString();
+		    Signup.insert({
+					email: emailadd,
+					createdAt: timestamp
+				});
+				return true;
+		  }
 		})
 	})
 }

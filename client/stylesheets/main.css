@@ -1,5 +1,6 @@
 html, body {
-  height: 100%; }
+  height: 100%;
+  width: 100%; }
 
 .list-group-item {
   margin-bottom: 5px;
@@ -55,5 +56,58 @@ html, body {
 .removeWordBtn {
   margin: 5px;
   float: right; }
+
+header {
+  position: relative;
+  width: 100%;
+  min-height: auto; }
+  header .header-content {
+    position: relative;
+    padding: 100px 15px 100px;
+    width: 100%; }
+    header .header-content .header-content-inner h1 {
+      position: relative;
+      font-weight: 700;
+      text-transform: uppercase;
+      margin-top: 0;
+      margin-bottom: 0; }
+      @media screen and (min-device-width: 1170px) {
+        header .header-content .header-content-inner h1 {
+          left: 25%; } }
+      @media screen and (min-device-width: 970) and (max-device-width: 1169) {
+        header .header-content .header-content-inner h1 {
+          left: 20%; } }
+      @media screen and (min-device-width: 767) and (max-device-width: 969) {
+        header .header-content .header-content-inner h1 {
+          left: 10%; } }
+      @media screen and (max-device-width: 768) {
+        header .header-content .header-content-inner h1 {
+          left: 0; } }
+    header .header-content .header-content-inner p {
+      font-weight: 300;
+      font-size: 16px;
+      margin-bottom: 50px; }
+
+#landingContainer {
+  margin-top: 20px; }
+
+#layoutWrapper, #main, .intro {
+  height: 100%; }
+
+#demo {
+  text-align: center; }
+
+#callToAction {
+  text-align: center; }
+
+.landing-tiles {
+  height: 25px;
+  border-radius: 5px;
+  background-color: #684569; }
+
+.landing-tiles.w2 {
+  height: 25px;
+  width: 75px;
+  background-color: #DB4243; }
 
 /*# sourceMappingURL=main.css.map */

@@ -3,6 +3,7 @@ $secondColor: #fff;
 
 html, body {
   height: 100%;
+  width: 100%
 }
 
 
@@ -73,4 +74,79 @@ html, body {
   // border-radius: 10px;
   // height: 25px;
   // width: 150px;
+}
+
+////////////// landing page //////////////
+header {
+  position: relative;
+  width: 100%;
+  min-height: auto;
+  .header-content {
+    position: relative;
+    padding: 100px 15px 100px;
+    width: 100%;
+    .header-content-inner {
+      h1 {
+        position: relative;
+        font-weight: 700;
+        //left: 20%;
+        text-transform: uppercase;
+        margin-top: 0;
+        margin-bottom: 0;
+        @media screen and (min-device-width: 1170px){
+          left: 25%;
+        }
+        @media screen and (min-device-width: 970) and (max-device-width: 1169){
+          left: 20%;
+        }
+        @media screen and (min-device-width: 767) and (max-device-width: 969){
+          left: 10%;
+        }
+        @media screen and (max-device-width: 768){
+          left: 0;
+        }
+      }
+      p {
+        font-weight: 300;
+        font-size: 16px;
+        margin-bottom: 50px;
+      }
+    }
+  }
+}
+
+#landingContainer {
+  margin-top: 20px;
+}
+
+#layoutWrapper,  #main, .intro {
+  height: 100%;
+}
+
+#demo {
+  text-align: center;
+  video {
+    display: block;
+  }
+}
+
+#callToAction{
+  text-align: center;
+}
+
+.landing-tiles {
+  height: 25px;
+  border-radius: 5px;
+  background-color: #684569;
+  cursor: pointer;
+}
+
+.landing-tiles.w2 {
+  height: 25px;
+  width: 75px;
+  background-color: #DB4243;
+}
+
+.hidden {
+  display: none;
 }

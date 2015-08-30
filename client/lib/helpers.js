@@ -1,5 +1,5 @@
 if (Meteor.isClient) {
-  Template.header.helpers({
+  Template.layout.helpers({
     activeIfTemplateIs: function (template) {
       var currentRoute = Router.current().route.getName();
       return currentRoute &&
