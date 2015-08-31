@@ -93,17 +93,23 @@ header {
         text-transform: uppercase;
         margin-top: 0;
         margin-bottom: 0;
-        @media screen and (min-device-width: 1170px){
-          left: 25%;
-        }
-        @media screen and (min-device-width: 970) and (max-device-width: 1169){
-          left: 20%;
-        }
-        @media screen and (min-device-width: 767) and (max-device-width: 969){
-          left: 10%;
-        }
-        @media screen and (max-device-width: 768){
+        /* SMARTPHONES PORTRAIT */
+        @media only screen and (min-width: 768px) {
           left: 0;
+        }
+
+        /* SMARTPHONES LANDSCAPE */
+        // @media only screen and (min-width: 480px) {
+        //   left: 10%;
+        // }
+
+        /* TABLETS PORTRAIT */
+        @media only screen and (min-width: 768px) {
+          left: 13%;
+        }
+        /* TABLET LANDSCAPE / DESKTOP */
+        @media only screen and (min-width: 991px) {
+          left: 25%;
         }
       }
       p {
@@ -119,15 +125,12 @@ header {
   margin-top: 20px;
 }
 
-#layoutWrapper,  #main, .intro {
-  height: 100%;
+.header-content-inner {
+  height: 500px;
 }
 
 #demo {
   text-align: center;
-  video {
-    display: block;
-  }
 }
 
 #callToAction{
@@ -135,18 +138,47 @@ header {
 }
 
 .landing-tiles {
+  display: inline-block;
   height: 25px;
   border-radius: 5px;
   background-color: #684569;
   cursor: pointer;
 }
 
-.landing-tiles.w2 {
-  height: 25px;
-  width: 75px;
-  background-color: #DB4243;
-}
-
 .hidden {
   display: none;
+}
+
+.down {
+  cursor: pointer;
+}
+
+.ball1 {
+	background: #684569;
+	height: 8px;
+	width: 8px;
+	border-radius: 100%;
+}
+.ball2 {
+	background: #684569;
+	height: 6px;
+	width: 6px;
+	border-radius: 100%;
+}
+.ball3 {
+	background: #684569;
+	height: 4px;
+	width: 4px;
+	border-radius: 100%;
+}
+.spacer {
+	height: 5px;
+}
+.arrow {
+	height: 20px;
+	width: 20px;
+	border: 0;
+	border-right: 4px solid #684569;
+	border-top: 4px solid #684569;
+	transform: translateY(-10px) rotate(135deg);
 }
