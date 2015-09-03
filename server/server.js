@@ -12,9 +12,9 @@ Meteor.methods({
 		
 		
 
-		if (Words.findOne({word: postAttributes.word})) {
-			console.log("You already have that word in your word bank!")
-		} else { 
+		// if (Words.findOne({word: postAttributes.word, postId: Meteor.userId()})) {
+		// 	console.log("You already have that word in your word bank!")
+		// } else { 
 			var base_url = 'http://www.dictionaryapi.com/api/v1/references/collegiate/xml/'+postAttributes.word+'?key=a9b252b9-b995-41e8-9e32-a2abbd18c801';
 			Meteor.http.get(base_url, function (error, response){
 				if (response.statusCode == 200) {
@@ -62,14 +62,15 @@ Meteor.methods({
 			      		createdAt: new Date()
 			      	});
 
-			      var postId = Words.insert(word);	   
-			      
+			      var postId = Words.insert(word);
+			      console.log(postId)	   
+
 				} else {
 					console.log("Response issue: ", result.statusCode);
 				};
 		});
 	}
-	}
+	// }
 })
 
 if (Meteor.isServer){

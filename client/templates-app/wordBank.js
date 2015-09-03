@@ -27,7 +27,7 @@ var cardHandler = function(wordcard) {
 	// var word = Words.find({word: Session.get("selectedWord")});
 
 	//definition
-	var defText = word.map(function(query) {return query.partOfSpeech + query.definition;});
+	var defText = word.map(function(query) {return query.partOfSpeech[0] + query.definition;});
 
 	createElement("p", defText, "definition-ondemand");
 
