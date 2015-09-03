@@ -95,21 +95,27 @@ function WDpopDefinition() {
     document.getElementsByTagName('body')[0].appendChild(popup);
   });
 
-  function popupHandler() {
+  function popupHandler(e) {
     //currently clicked word
     var clickedWord = this.innerHTML.toLowerCase();
     var definitionContainer = $('.definition-container')[0];
     console.log(clickedWord);
     var defQuery = Words.find({word: clickedWord}, { word: 1, definition: 1, _id: 0});
     var defContent = defQuery.map(function(query) {
-      return query.word + ": " + query.definition;
+      return query.word.fontsize(5).bold() + " " + query.partOfSpeech + "<br>" + query.definition;
     })
     //popup location and properties
-    var x = event.clientX;
-    var y = event.clientY+window.pageYOffset+10;
+    var x = e.pageX;
+    var y = e.pageY + 10;
     definitionContainer.style.display = 'block';
-    definitionContainer.style.left = x+'px';
-    definitionContainer.style.top = y+'px';
+    definitionContainer.style.top = y +'px';
+    //keep definition box in the window
+    if(x < $(window).width()/2) {
+      definitionContainer.style.left = x - 20 +'px';
+    }else{
+      definitionContainer.style.left = $(window).width()/2 - 10 + 'px';
+    }
+
     definitionContainer.innerHTML = defContent;
     //close definition popup
     definitionContainer.addEventListener('click', function(){
@@ -153,6 +159,7 @@ function WDpopDefinition() {
 
 ////////////////////meteor///////////////////////////////
 Template.reader.onRendered(function() {
+
   var words = Words.find({}, {sort: {createdAt: -1}, word: 1, definition: 0, _id: 0});
   var vocab = words.map(function(query) {
     return query.word;
@@ -172,6 +179,34 @@ Template.reader.onRendered(function() {
   });
   //attach eventlistener for popup definition. call from "src/inject/popDefinition.js"
   WDpopDefinition();
+  console.log("window's size: " + $(window).width());
+  console.log("window's 1/2 size: " + $(window).width()/2);
+
+  //
+  //adding new words
+  //
+  $('#readerPanel').bind('mouseup', function(e){
+      var selection;
+      var message;
+      var word;
+      if (window.getSelection) {
+        selection = window.getSelection();
+      } else if (document.selection) {
+        selection = document.selection.createRange();
+      }
+      selection = selection.toString();
+      message = 'Add "' + selection + '" to word bank?';
+      if (selection !== '') {
+        if(confirm(message)){
+          word = {word: selection};
+          console.log(word);
+          Meteor.call('wordInsert', word);
+        }else{
+          return false;
+        }
+      }
+
+  });
 });
 
 Template.reader.helpers({

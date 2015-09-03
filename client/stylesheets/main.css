@@ -2,6 +2,13 @@ html, body {
   height: 100%;
   width: 100%; }
 
+input[type='text'], input[type='email'], input[type='search'],
+input[type='password'], textarea {
+  user-select: text;
+  -moz-user-select: text;
+  -webkit-user-select: text;
+  -ms-user-select: text; }
+
 .list-group-item {
   margin-bottom: 5px;
   width: auto;
@@ -56,6 +63,9 @@ html, body {
 .removeWordBtn {
   margin: 5px;
   float: right; }
+
+#callToAction {
+  z-index: 1; }
 
 header {
   position: relative;
