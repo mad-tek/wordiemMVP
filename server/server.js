@@ -63,10 +63,8 @@ Meteor.methods({
 			      	});
 
 			      var postId = Words.insert(word);
-			      console.log(postId)	   
-
 				} else {
-					console.log("Response issue: ", result.statusCode);
+					console.log("Response issue: ", response.statusCode);
 				};
 		});
 	}
