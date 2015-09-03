@@ -23,34 +23,26 @@ Meteor.methods({
 						
 						//sort through the entire entry result
 						for (var i=0; i<entries.length; i++) {
-							
 							//only show entries that are actually your word
 							if (entries[i].ew == postAttributes.word) {
-								
-								var definition = entries[i].def[0].dt;
-								var sound = entries[i].sound[0]
-	            	var partOfSpeech = entries[i].fl;
-	            	var pronounciation = entries[i].pr[0]
-	            	
-	            	var definitionStr = "";
-	            	console.log(definition)
-	            	
-	            	//if definition entry is object - iterate through and combine string
-	            	if (typeof definition === 'object'){ 
-									for (var i=0; i<(_.size(definition)); i++){										
-										if (_.size(definition[i]["_"]) > 1) {
-											definitionStr += " "+definition[i]["_"];
-										}
+								var definition = entries[i].def[0].dt
+								var partOfSpeech = entries[i].fl;
+	            	var pronounciation = entries[i].pr
+
+								for (var j =0; j<definition.length; j++){
+									var definitionStr = "";
+									if (typeof definition[j] === 'object') {
+										definitionStr += " "+definition[j]["_"];
 									}
-									definition = definitionStr;
-								}
-								if (typeof definition === "string"){
-									definition = definition
-								}
-	            	results.push({
+									var cookie = definitionStr
+									if (typeof definition[j] === "string"){
+										cookie += " "+ definition[j]
+									}	
+								results.push({
 	            		partOfSpeech: partOfSpeech,
-	            		definition: definition
-	            	});
+	            		definition: cookie
+	            	});	            	
+								}
 	          	}
 	         	}
 	        })
@@ -71,6 +63,7 @@ Meteor.methods({
 			      	});
 
 			      var postId = Words.insert(word);	   
+			      
 				} else {
 					console.log("Response issue: ", result.statusCode);
 				};
