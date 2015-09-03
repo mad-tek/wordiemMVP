@@ -32,6 +32,25 @@ input[type='password'], textarea {
   -moz-box-shadow: 10px 3px 26px 4px rgba(0, 0, 0, 0.55);
   box-shadow: 10px 3px 26px 4px rgba(0, 0, 0, 0.55); }
 
+#login-screen .dropdown-menu {
+  display: block;
+  position: relative;
+  height: 180px;
+  margin-left: auto;
+  margin-right: auto;
+  float: none;
+}
+
+#login-screen #login-dropdown-list {
+  display: block;
+}
+
+/* Hides the toggle that you click on */
+
+#login-screen a.dropdown-toggle {
+  display: none;
+}
+
 .submitWord {
   margin: 10px 0; }
 

@@ -32,14 +32,17 @@
     <div class="row">
       <div class="col-md-4 col-md-offset-4" id="callToAction">
         <H3>We are in Beta!</H3>
-        <p>Sign up for our Beta testing</p>
+        <p>Please create an account and give it a try!</p>
         <form class="signupForm">
-    			<div class="input-group">
+    			<!-- <div class="input-group">
     				<input name="signup" type="text" id="submit" class="submit-form form-control" placeholder="email"/>
     				<span class="input-group-btn">
     					<input type="submit" value="Signup" class="btn btn-primary">
     				</span>
-    			</div>
+    			</div> -->
+          <div id="login-screen">
+          {{> loginButtons}}
+          </div>
     		</form>
         <div class="alert alert-danger hidden" id="emailError" role="alert">Please enter a proper email address.</div>
         <div class="alert alert-success hidden" role="alert">Yay! We will keep you updated.</div>
