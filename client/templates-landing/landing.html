@@ -1,9 +1,20 @@
 <template name="landing">
-  <header class="intro">
+  <div class="intro">
     <div class="header-content">
       <div class="header-content-inner">
         <h1>Elevate your <span id="catchyWord"><span>vocabulary</span><span>learning</span></span></h1>
-        <div id="landingContainer">
+        <div class="col-md-4 col-md-offset-4 demoBank">
+      		<form class="demoForm">
+      			<div class="input-group">
+      				<input name="demoSubmit" type="text" id="demosubmit" class="submit-form form-control" autofocus="autofocus" placeholder="Have fun! Add a word"/>
+      				<span class="input-group-btn">
+      					<input type="submit" value="Add" class="btn btn-primary">
+      				</span>
+      			</div>
+      		</form>
+          <div class="alert alert-danger hidden" id="demoError" role="alert">Add a word please.</div>
+      	</div>
+        <div class="col-md-12" id="landingContainer">
         </div>
       </div>
       <center class="down">
@@ -15,7 +26,7 @@
           <div class="arrow"></div>
       </center>
     </div>
-  </header>
+  </div>
   <hr>
   <div class="container">
     <div class="row">
@@ -24,13 +35,14 @@
         <p>Sign up for our alpha testing</p>
         <form class="signupForm">
     			<div class="input-group">
-    				<input name="signup" type="text" id="submit" class="submit-form form-control" autofocus="autofocus" placeholder="email"/>
+    				<input name="signup" type="text" id="submit" class="submit-form form-control" placeholder="email"/>
     				<span class="input-group-btn">
     					<input type="submit" value="Signup" class="btn btn-primary">
     				</span>
     			</div>
     		</form>
-        <div class="alert alert-success hidden" role="alert">Success! We will keep you updated.</div>
+        <div class="alert alert-danger hidden" id="emailError" role="alert">Please enter a proper email address.</div>
+        <div class="alert alert-success hidden" role="alert">Yay! We will keep you updated.</div>
       </div>
     </div>
   </div>
@@ -40,17 +52,21 @@
       <div id="demo">
         <div class="wordbankDemo">
           <H1>Create your word bank</H1>
-          <video id="wordVid" width="500" height="492" loop>
-            <source src="demo/demoWordbank.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+          <div class="vidWrap">
+            <video id="wordVid" width="500" height="492" loop>
+              <source src="demo/demoWordbank.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
         <div class="readerDemo">
           <H1>Expand your vocabulary as you read</H1>
-          <video id="readerVid" width="500" height="492" loop>
-            <source src="demo/demoReader.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
+          <div class="vidWrap">
+            <video id="readerVid" width="500" height="492" loop>
+              <source src="demo/demoReader.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
         </div>
       </div>
     </div>
@@ -62,13 +78,14 @@
         <p>Sign up for our alpha testing</p>
         <form class="signupForm">
     			<div class="input-group">
-    				<input name="signup" type="text" id="submit" class="submit-form form-control" autofocus="autofocus" placeholder="email"/>
+    				<input name="signup" type="text" id="submit" class="submit-form form-control" placeholder="email"/>
     				<span class="input-group-btn">
     					<input type="submit" value="Signup" class="btn btn-primary">
     				</span>
     			</div>
     		</form>
-        <div class="alert alert-success hidden" role="alert">Success! We will keep you updated.</div>
+        <div class="alert alert-danger hidden" id="emailError" role="alert">Please enter a proper email address.</div>
+        <div class="alert alert-success hidden" role="alert">Yay! We will keep you updated.</div>
       </div>
     </div>
   </div>

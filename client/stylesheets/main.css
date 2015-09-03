@@ -2,6 +2,12 @@ html, body {
   height: 100%;
   width: 100%; }
 
+hr {
+  width: 20%;
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, transparent, rgba(0, 0, 0, 0.75), transparent); }
+
 input[type='text'], input[type='email'], input[type='search'],
 input[type='password'], textarea {
   user-select: text;
@@ -16,6 +22,15 @@ input[type='password'], textarea {
   cursor: pointer; }
   .list-group-item a {
     text-decoration: none; }
+
+#login-dropdown-list {
+  width: auto;
+  background-color: white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  -webkit-box-shadow: 10px 3px 26px 4px rgba(0, 0, 0, 0.55);
+  -moz-box-shadow: 10px 3px 26px 4px rgba(0, 0, 0, 0.55);
+  box-shadow: 10px 3px 26px 4px rgba(0, 0, 0, 0.55); }
 
 .submitWord {
   margin: 10px 0; }
@@ -64,18 +79,23 @@ input[type='password'], textarea {
   margin: 5px;
   float: right; }
 
-#callToAction {
-  z-index: 1; }
+.landingBg {
+  background: url("/landingBg.png");
+  background-size: cover; }
 
-header {
+.demoBank {
+  margin-top: 20px; }
+
+.intro {
+  color: #DEEEF8;
   position: relative;
   width: 100%;
   min-height: auto; }
-  header .header-content {
+  .intro .header-content {
     position: relative;
     padding: 100px 15px 100px;
     width: 100%; }
-    header .header-content .header-content-inner h1 {
+    .intro .header-content .header-content-inner h1 {
       position: relative;
       font-weight: 700;
       text-transform: uppercase;
@@ -86,15 +106,15 @@ header {
       /* TABLETS PORTRAIT */
       /* TABLET LANDSCAPE / DESKTOP */ }
       @media only screen and (min-width: 768px) {
-        header .header-content .header-content-inner h1 {
+        .intro .header-content .header-content-inner h1 {
           left: 0; } }
       @media only screen and (min-width: 768px) {
-        header .header-content .header-content-inner h1 {
+        .intro .header-content .header-content-inner h1 {
           left: 13%; } }
       @media only screen and (min-width: 991px) {
-        header .header-content .header-content-inner h1 {
+        .intro .header-content .header-content-inner h1 {
           left: 25%; } }
-    header .header-content .header-content-inner p {
+    .intro .header-content .header-content-inner p {
       font-weight: 300;
       font-size: 16px;
       margin-bottom: 50px; }
@@ -106,17 +126,31 @@ header {
   height: 500px; }
 
 #demo {
-  text-align: center; }
+  text-align: center;
+  color: #DEEEF8; }
+  #demo video {
+    margin-top: 80px; }
+  #demo .vidWrap {
+    height: 630px;
+    background: url("/browserWrap.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 600px 622px; }
 
 #callToAction {
-  text-align: center; }
+  text-align: center;
+  color: #DEEEF8; }
 
 .landing-tiles {
   display: inline-block;
+  color: #DEEEF8;
+  padding: 5px 10px 7px 10px;
   height: 25px;
   border-radius: 5px;
   background-color: #684569;
-  cursor: pointer; }
+  cursor: pointer;
+  height: auto;
+  width: auto; }
 
 .hidden {
   display: none; }
@@ -151,6 +185,11 @@ header {
   border: 0;
   border-right: 4px solid #684569;
   border-top: 4px solid #684569;
+  -webkit-transform: translateY(-10px) rotate(135deg);
+  -ms-transform: translateY(-10px) rotate(135deg);
   transform: translateY(-10px) rotate(135deg); }
+
+.alert {
+  margin-top: 10px; }
 
 /*# sourceMappingURL=main.css.map */

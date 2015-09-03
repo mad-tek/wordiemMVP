@@ -99,7 +99,7 @@ function WDpopDefinition() {
     //currently clicked word
     var clickedWord = this.innerHTML.toLowerCase();
     var definitionContainer = $('.definition-container')[0];
-    console.log(clickedWord);
+    // console.log(clickedWord);
     var defQuery = Words.find({word: clickedWord}, { word: 1, definition: 1, _id: 0});
     var defContent = defQuery.map(function(query) {
       return query.word.fontsize(5).bold() + " " + query.partOfSpeech + "<br>" + query.definition;
@@ -128,8 +128,8 @@ function WDpopDefinition() {
       document.getElementsByClassName('definition-container')[0].appendChild(removeWordBtn);
       //when clicked sends clickedWord to background.js to be removed
       removeWordBtn.addEventListener('click', function() {
-        wordToDelete = Words.find({word: clickedWord}).map(function(query) {return query._id;})
-        console.log(wordToDelete[0]);
+        wordToDelete = Words.find({word: clickedWord}).map(function(query) {return query._id;});
+        // console.log(wordToDelete[0]);
         var message = 'Are you sure you want to remove "' + clickedWord + '"?';
     		if(confirm(message)){
     			Words.remove(wordToDelete[0]);
@@ -148,7 +148,7 @@ function WDpopDefinition() {
     });
   }
   //number of highlighted words
-  console.log($('.wordiem-highlight').length);
+  // console.log($('.wordiem-highlight').length);
 
   //add onclick listener for pop up definition for each highlighted words
   var highlightClass = $('.wordiem-highlight');
@@ -171,7 +171,7 @@ Template.reader.onRendered(function() {
     WDhighlighter(text, false);
   }
 
-  console.log(vocab);
+  // console.log(vocab);
   //vocab is the array. for each value in the array, find and highlight in the DOM
   vocab.forEach(function(text){
     //highlighter from helper.js
@@ -179,8 +179,6 @@ Template.reader.onRendered(function() {
   });
   //attach eventlistener for popup definition. call from "src/inject/popDefinition.js"
   WDpopDefinition();
-  console.log("window's size: " + $(window).width());
-  console.log("window's 1/2 size: " + $(window).width()/2);
 
   //
   //adding new words
@@ -199,7 +197,7 @@ Template.reader.onRendered(function() {
       if (selection !== '') {
         if(confirm(message)){
           word = {word: selection};
-          console.log(word);
+          // console.log(word);
           Meteor.call('wordInsert', word);
         }else{
           return false;

@@ -1,10 +1,17 @@
 $primeColor: #000;
 $secondColor: #fff;
-
+$fluffy: #DEEEF8;
 
 html, body {
   height: 100%;
   width: 100%
+}
+
+hr {
+  width: 20%;
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
 }
 
 input[type='text'], input[type='email'], input[type='search'],
@@ -24,6 +31,16 @@ input[type='password'], textarea
   a {
     text-decoration: none;
   }
+}
+
+#login-dropdown-list {
+  width: auto;
+  background-color: white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  -webkit-box-shadow: 10px 3px 26px 4px rgba(0,0,0,0.55);
+  -moz-box-shadow: 10px 3px 26px 4px rgba(0,0,0,0.55);
+  box-shadow: 10px 3px 26px 4px rgba(0,0,0,0.55);
 }
 
 .submitWord {
@@ -85,10 +102,17 @@ input[type='password'], textarea
 }
 
 ////////////// landing page //////////////
-#callToAction {
-  z-index: 1;
+.landingBg {
+  background: url('/landingBg.png');
+  background-size: cover;
 }
-header {
+
+.demoBank {
+  margin-top: 20px;
+}
+
+.intro {
+  color: $fluffy;
   position: relative;
   width: 100%;
   min-height: auto;
@@ -142,18 +166,34 @@ header {
 
 #demo {
   text-align: center;
+  color: $fluffy;
+  video{
+    margin-top: 80px;
+  }
+  .vidWrap {
+    height: 630px;
+    background: url('/browserWrap.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 600px 622px;
+  }
 }
 
 #callToAction{
   text-align: center;
+  color: $fluffy;
 }
 
 .landing-tiles {
   display: inline-block;
+  color: $fluffy;
+  padding: 5px 10px 7px 10px;
   height: 25px;
   border-radius: 5px;
   background-color: #684569;
   cursor: pointer;
+  height: auto;
+  width: auto;
 }
 
 .hidden {
@@ -186,10 +226,16 @@ header {
 	height: 5px;
 }
 .arrow {
-	height: 20px;
+  height: 20px;
 	width: 20px;
 	border: 0;
 	border-right: 4px solid #684569;
 	border-top: 4px solid #684569;
-	transform: translateY(-10px) rotate(135deg);
+	-webkit-transform: translateY(-10px) rotate(135deg);
+	    -ms-transform: translateY(-10px) rotate(135deg);
+	        transform: translateY(-10px) rotate(135deg);
+}
+
+.alert {
+  margin-top: 10px;
 }
